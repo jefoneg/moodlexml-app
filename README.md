@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Moodle XML Generator
+
+Turn your questions and answer key into Moodle XML with AI.
+
+Built with Next.js, this application helps educators create quizzes without manually writing XML. Simply paste your questions and answer key, let AI handle the conversion, and download the XML file for import into Moodle.
+
+## How It Works
+
+1. **Paste your questions.** Include answer choices when available.
+2. **Paste your answer key.** Match the numbering of your questions.
+3. **Generate the XML.** AI processes your input and formats it for Moodle.
+4. **Download and review.** Check the generated questions and answers.
+5. **Import into Moodle/SLSU-LMS.** Upload the file to your question bank using the Moodle XML import format.
+
+## Features
+
+- Separate text boxes for questions and answer keys.
+- AI-assisted conversion to Moodle XML.
+- Plain-text input with no manual XML formatting required.
+- Downloadable XML output for Moodle import.
+
+## Example Input
+
+### Questions
+
+```text
+1. Which Java keyword is used to inherit a class?
+A. implements
+B. extends
+C. import
+D. package
+
+2. Encapsulation helps protect an object's internal state.
+True or False
+```
+
+### Answer Key
+
+```text
+1. B
+2. True
+```
+
+For best results, use consistent numbering and clearly separate each question.
+
+## Tech Stack
+
+- **Next.js** — application framework.
+- **React** — user interface.
+- **AI API** — question interpretation and XML generation.
+- **Moodle XML** — quiz export format.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+Run this command inside the project directory:
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Create a `.env.local` file at the project root and add the credentials required by your AI integration.
+
+Use the environment variable names referenced in your server-side code.
+
+Keep API keys on the server. Do not prefix secret keys with `NEXT_PUBLIC_` or commit `.env.local` to version control.
+
+### 3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Reviewing Generated Quizzes
 
-To learn more about Next.js, take a look at the following resources:
+AI-generated output may contain incorrect answers, altered wording, or formatting issues. Review the generated content and verify that Moodle imports it successfully before publishing a quiz.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data Handling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Questions and answer keys are sent to the configured AI provider during generation. Data retention and usage depend on the provider and the application's implementation.

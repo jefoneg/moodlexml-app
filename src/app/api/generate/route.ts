@@ -30,7 +30,20 @@ const gemini = new GoogleGenAI({
 //   apiKey: deepseekKey,
 // });
 
-export async function POST(request: Request) {
+/**
+ *
+ * @param                                                                                                request  The request from the client.
+ * @returns {Promise<NextResponse<{ response: any;}> | NextResponse<{error: string;status: number; }>>}           The AI generated MoodleXML from AI.
+ */
+export async function POST(request: Request): Promise<
+  | NextResponse<{
+      response: any;
+    }>
+  | NextResponse<{
+      error: string;
+      status: number;
+    }>
+> {
   try {
     const { prompt } = await request.json();
 

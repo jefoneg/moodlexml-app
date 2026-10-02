@@ -14,6 +14,7 @@ import { AlertInfo } from "../reusable-components/alert-info";
 import { AlertSuccess } from "../reusable-components/alert-success";
 import { Paragraph } from "../reusable-components/paragraph-text";
 import { Title } from "../reusable-components/title-text";
+import { CommonHelper } from "../helpers/common.helper";
 
 export function MainContent() {
   const [toXMLText, setToXMLText] = useState({});
@@ -38,7 +39,14 @@ export function MainContent() {
     CommonConstant.SEPARATOR.EMPTY_STRING,
   );
 
-  function handleQuestionValueChange(
+  /**
+   * Handles value changes from the textarea.
+   *
+   * @param    {React.ChangeEvent<HTMLTextAreaElement>} event        The value passed from an event like a value from a textarea.
+   * @param    {boolean}                                isQuestions  Flag to determine if the passed value is a question or not.
+   * @returns  {void}
+   */
+  function handleTextValueChange(
     event: React.ChangeEvent<HTMLTextAreaElement>,
     isQuestions?: boolean,
   ): void {
@@ -55,20 +63,24 @@ export function MainContent() {
     }
   }
 
-  function handleScrollTop() {
-    const element = document.getElementById("welcome-message");
-
-    element?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function clearEntries() {
+  /**
+   * Handles clearing all entries on the textarea.
+   *
+   * @returns  {void}
+   */
+  function clearEntries(): void {
     setQuestions(CommonConstant.SEPARATOR.EMPTY_STRING);
     setAnswerKeys(CommonConstant.SEPARATOR.EMPTY_STRING);
     setError(false);
-    handleScrollTop();
+    CommonHelper.handleScrollTop(CommonConstant.PARAMETERS.WELCOME_MESSAGE_ID);
   }
 
-  async function generateMoodleXML() {
+  /**
+   * Handles the API endpoint call when generating MoodleXML.
+   *
+   * @returns  {Promise<void>}
+   */
+  async function generateMoodleXML(): Promise<void> {
     setSuccessful(false);
     setBusyState(true);
     const isQuestionsAndKeyValid =
@@ -82,7 +94,9 @@ export function MainContent() {
       setErrorMessage(CommonConstant.ERROR.INVALID_QUESTION_ANSWER_DESC);
       setError(!isQuestionsAndKeyValid);
       setBusyState(isQuestionsAndKeyValid);
-      handleScrollTop();
+      CommonHelper.handleScrollTop(
+        CommonConstant.PARAMETERS.WELCOME_MESSAGE_ID,
+      );
       return;
     }
 
@@ -105,13 +119,17 @@ export function MainContent() {
         setError(true);
         setErrorTitle(CommonConstant.ERROR.SOMETHING_WENT_WRONG);
         setErrorMessage(CommonConstant.ERROR.CANT_GENERATE_MOODLE);
-        handleScrollTop();
+        CommonHelper.handleScrollTop(
+          CommonConstant.PARAMETERS.WELCOME_MESSAGE_ID,
+        );
 
         return;
       }
       setMoodleXmlContent(data.response.xml);
       setSuccessful(true);
-      handleScrollTop();
+      CommonHelper.handleScrollTop(
+        CommonConstant.PARAMETERS.WELCOME_MESSAGE_ID,
+      );
     } catch (error) {
       setError(true);
       setErrorTitle(CommonConstant.ERROR.SOMETHING_WENT_WRONG);
@@ -120,7 +138,9 @@ export function MainContent() {
           ? error?.message
           : CommonConstant.ERROR.CANT_GENERATE_MOODLE,
       );
-      handleScrollTop();
+      CommonHelper.handleScrollTop(
+        CommonConstant.PARAMETERS.WELCOME_MESSAGE_ID,
+      );
     } finally {
       setBusyState(false);
     }
@@ -129,15 +149,10 @@ export function MainContent() {
   useEffect(() => {
     if (!isBusy) return;
 
-    function handleBeforeUnload(event: BeforeUnloadEvent) {
-      event.preventDefault();
-      event.returnValue = CommonConstant.SEPARATOR.EMPTY_STRING;
-    }
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("beforeunload", CommonHelper.handleBeforeUnload);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("beforeunload", CommonHelper.handleBeforeUnload);
     };
   }, [isBusy]);
 
@@ -197,7 +212,7 @@ export function MainContent() {
                     placeholder={
                       "1. What is...?\n2. Explain...\n3. The sky is always green..."
                     }
-                    onChange={(event) => handleQuestionValueChange(event, true)}
+                    onChange={(event) => handleTextValueChange(event, true)}
                     disabled={isBusy}
                   />
                 </Field>
@@ -227,9 +242,7 @@ export function MainContent() {
                       id="textarea-message"
                       value={answerKeys}
                       placeholder={"1. B\n2. Essay\n3. True"}
-                      onChange={(event) =>
-                        handleQuestionValueChange(event, false)
-                      }
+                      onChange={(event) => handleTextValueChange(event, false)}
                       disabled={isBusy}
                     />
                   </Field>

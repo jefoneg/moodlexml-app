@@ -63,4 +63,8 @@ export class CommonConstant {
       NOTE: "Keep the answers in the same order as your questions.",
     },
   };
+
+  public static readonly PARAMETERS = {
+    WELCOME_MESSAGE_ID: "welcome-message"
+  }
 }
