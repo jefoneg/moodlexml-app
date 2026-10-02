@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Darker variation of #8EA66B for background -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#677A53"/>
+      <stop offset="100%" stop-color="#4F5F40"/>
+    </linearGradient>
+
+    <!-- Document / XML Badge Base Color (#D8A2A2 Dusty Rose) -->
+    <solidColor id="badgeBase" color="#D8A2A2"/>
+
+    <!-- Brackets and Accents Color (#FFF9D6 Cream) -->
+    <solidColor id="accentColor" color="#FFF9D6"/>
+
+    <!-- Moodle "M" and Text Color (#FFDCDC Light Pink) -->
+    <solidColor id="moodleColor" color="#FFDCDC"/>
+    
+    <!-- Original moss green used for outlines and fold shadow (#8EA66B) -->
+    <solidColor id="mossGreen" color="#8EA66B"/>
+
+    <!-- Custom Drop Shadow Filter for this palette -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#4F5F40" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Custom Moodle 'M' Glow Filter for light text -->
+    <filter id="moodleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#FFDCDC" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Container with palette background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Main Content Container with Shadow -->
+  <g filter="url(#shadow)">
+    <!-- Document / XML Base Badge (Dusty Rose) -->
+    <path d="M 140 100 
+             L 300 100 
+             L 372 172 
+             L 372 412 
+             a 20 20 0 0 1 -20 20 
+             L 140 432 
+             a 20 20 0 0 1 -20 -20 
+             L 120 120 
+             a 20 20 0 0 1 20 -20 Z" 
+          fill="#D8A2A2" 
+          stroke="#8EA66B" 
+          stroke-width="3"/>
+
+    <!-- Folded Corner using moss green -->
+    <path d="M 300 100 L 300 172 L 372 172 Z" fill="#8EA66B"/>
+
+    <!-- Left XML Bracket < (Cream) -->
+    <path d="M 95 240 L 60 270 L 95 300" 
+          fill="none" 
+          stroke="#FFF9D6" 
+          stroke-width="14" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+
+    <!-- Right XML Bracket > (Cream) -->
+    <path d="M 417 240 L 452 270 L 417 300" 
+          fill="none" 
+          stroke="#FFF9D6" 
+          stroke-width="14" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+
+    <!-- Central Moodle "M" with Graduation Cap Integration (Light Pink) -->
+    <g filter="url(#moodleGlow)">
+      <!-- Graduation Cap Top -->
+      <polygon points="256,150 320,180 256,210 192,180" fill="#FFDCDC"/>
+      
+      <!-- Tassel in Cream -->
+      <path d="M 305 187 L 325 210 L 325 230" 
+            fill="none" 
+            stroke="#FFF9D6" 
+            stroke-width="4" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"/>
+      <circle cx="325" cy="232" r="3" fill="#FFF9D6"/>
+
+      <!-- Modern Bold "M" Structure -->
+      <path d="M 180 370 
+               L 180 230 
+               L 225 230 
+               L 256 280 
+               L 287 230 
+               L 332 230 
+               L 332 370 
+               L 296 370 
+               L 296 295 
+               L 268 340 
+               L 244 340 
+               L 216 295 
+               L 216 370 Z" 
+            fill="#FFDCDC"/>
+    </g>
+
+    <!-- XML Tag Bottom Indicator / Status Pill (Cream) -->
+    <rect x="176" y="388" width="160" height="28" rx="14" fill="#FFF9D6" opacity="0.3"/>
+    <text x="256" y="407" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-weight="800" 
+          font-size="14" 
+          fill="#FFDCDC" 
+          text-anchor="middle" 
+          letter-spacing="2">XML GENERATOR</text>
+  </g>
+</svg>
