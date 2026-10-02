@@ -3,17 +3,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldDescription } from "@/components/ui/field";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import { CommonConstant } from "@/constants/common.constant";
+import { CloudArrowDownIcon } from "@phosphor-icons/react";
+import { useEffect, useState } from "react";
+import { ApiHelper } from "../helpers/api.helper";
+import { AlertDestructive } from "../reusable-components/alert-destructive";
+import { AlertInfo } from "../reusable-components/alert-info";
+import { AlertSuccess } from "../reusable-components/alert-success";
 import { Paragraph } from "../reusable-components/paragraph-text";
 import { Title } from "../reusable-components/title-text";
-import { useEffect, useState } from "react";
-import { AlertDestructive } from "../reusable-components/alert-destructive";
-import { Spinner } from "@/components/ui/spinner";
-import { AlertInfo } from "../reusable-components/alert-info";
-import { CommonConstant } from "@/constants/common.constant";
-import { ApiHelper } from "../helpers/api.helper";
-import { AlertSuccess } from "../reusable-components/alert-success";
-import { CloudArrowDownIcon } from "@phosphor-icons/react";
 
 export function MainContent() {
   const [toXMLText, setToXMLText] = useState({});
@@ -207,7 +207,9 @@ export function MainContent() {
         </Card>
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-lg md:text-xl">Answers</CardTitle>
+            <CardTitle className="text-lg md:text-xl">
+              {CommonConstant.CARD_CONTENTS.ANSWERS.TITLE}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <form>
@@ -215,10 +217,10 @@ export function MainContent() {
                 <div className="grid gap-2">
                   <Field>
                     <FieldDescription className="text-sm md:text-lg">
-                      Drop your answer key here.
+                      {CommonConstant.CARD_CONTENTS.ANSWERS.SENTENCE}
                     </FieldDescription>
                     <FieldDescription className="text-xs md:text-sm italic">
-                      Keep the answers in the same order as your questions.
+                      {CommonConstant.CARD_CONTENTS.ANSWERS.NOTE}
                     </FieldDescription>
                     <Textarea
                       className="text-sm h-62.5 overflow-y-auto resize-none lg:text-lg"
