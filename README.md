@@ -62,11 +62,13 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env.local` file at the project root and add the credentials required by your AI integration.
+Create a `.env` file at the project root and add your Gemini API key:
 
-Use the environment variable names referenced in your server-side code.
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
 
-Keep API keys on the server. Do not prefix secret keys with `NEXT_PUBLIC_` or commit `.env.local` to version control.
+Keep your API key private and ensure `.env` is included in `.gitignore`.
 
 ### 3. Start the development server
 
