@@ -1,7 +1,7 @@
-import { CommonConstant } from "@/constants/common.constant";
+import { CommonConstant } from "../constants/common.constant";
 
 export class CommonHelper {
-  public static parseResponseText(text: string | undefined): any {
+  public static parseResponseText(text: string | undefined): unknown {
     let responseText = undefined;
 
     if (typeof text === "string") {

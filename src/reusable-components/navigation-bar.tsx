@@ -3,8 +3,9 @@
 import { FinnTheHumanIcon } from "@phosphor-icons/react";
 import { ThemeToggle } from "./theme-toggle";
 
-export function NavigationBar() {
-  return (
+export function NavigationBar({ shouldShow = true }: { shouldShow: boolean }) {
+  if (shouldShow) {
+      return (
     <nav className="w-full h-15 p-5 flex items-center">
       <div className="flex container mx-auto items-center justify-between">
         <div className="flex flex-row items-center gap-2">
@@ -17,4 +18,7 @@ export function NavigationBar() {
       </div>
     </nav>
   );
+  } else {
+    <></>
+  }
 }

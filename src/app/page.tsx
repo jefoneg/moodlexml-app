@@ -1,10 +1,10 @@
-import { MainContent } from "./app-component/main-content";
-import { NavigationBar } from "./reusable-components/navigation-bar";
+import MainContent from "./home/page";
+import { NavigationBar } from "../reusable-components/navigation-bar";
 
 export default function Home() {
   return (
     <main>
-      <NavigationBar />
+      <NavigationBar shouldShow={true}/>
       <MainContent />
     </main>
   );

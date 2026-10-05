@@ -1,9 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 import dotenv from "dotenv";
-import { CommonConstant } from "@/constants/common.constant";
-import { PromptHelper } from "@/app/helpers/prompt.helper";
-import { CommonHelper } from "@/app/helpers/common.helper";
+import { CommonConstant } from "../../../constants/common.constant";
+import { PromptHelper } from "../../../helpers/prompt.helper";
+import { CommonHelper } from "../../../helpers/common.helper";
 import OpenAI from "openai";
 
 dotenv.config();

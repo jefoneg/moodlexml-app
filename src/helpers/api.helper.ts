@@ -1,4 +1,4 @@
-import { CommonConstant } from "@/constants/common.constant";
+import { CommonConstant } from "../constants/common.constant";
 
 export class ApiHelper {
   public static async api(endpoint: string, payload: any) {
