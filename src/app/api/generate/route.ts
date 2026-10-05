@@ -10,10 +10,10 @@ dotenv.config();
 
 const geminiKey = process.env.GEMINI_API_KEY;
 const geminiModel = process.env.GEMINI_MODEL;
-const openaiKey = process.env.OPENAI_KEY;
-const deepseekKey = process.env.DEEPSEEK_KEY;
+// const openaiKey = process.env.OPENAI_KEY;
+// const deepseekKey = process.env.DEEPSEEK_KEY;
 
-if (!geminiKey || !geminiModel || !openaiKey || !deepseekKey) {
+if (!geminiKey || !geminiModel) {
   throw new Error(CommonConstant.ERROR.DOTENV_ERROR);
 }
 
@@ -31,7 +31,8 @@ const gemini = new GoogleGenAI({
 // });
 
 /**
- *
+ * Performs the POST request in generating the Moodle XML.
+ * 
  * @param                                                                                                request  The request from the client.
  * @returns {Promise<NextResponse<{ response: any;}> | NextResponse<{error: string;status: number; }>>}           The AI generated MoodleXML from AI.
  */
